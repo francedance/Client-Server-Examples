@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Flickr API Feed</title>
+<style>
+
+body{
+	background-color: black;
+
+}
+
+h1 {
+	color: white;
+
+}
+
+.image {
+	float: left;
+	padding: 10px;
+	border: solid 1px rgb(27,45,94);
+	background-color: Grey;
+	margin: 0 30px 30px 0;
+	width: 180px;
+}
+.image:hover {
+	border-color: red;
+	background-color: rgb(204,204,204);	
+}
+</style>
+<script src="http://localhost/Flickr%20API/js/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	var URL = "https://api.flickr.com/services/feeds/groups_pool.gne?jsoncallback=?";
+
+	var searchInfo = {
+		id: "543627@N24",
+		format: "json"
+	};
+	
+	$.getJSON(URL, searchInfo, function(data){
+		$('h1').text(data.title)
+		var photoHTML = '';
+		
+		
+		$.each(data.items, function(i,photo) {
+			
+			photoHTML += '<span class="image" title="'+ photo.title + '">';
+			photoHTML += '<a href="' + photo.link + '" attribtue="' + photo.title + '">';
+			photoHTML += '<img src="' + photo.media.m.replace('_m','_m') + ' "></a></span>';
+			
+			
+		});
+		
+		
+		
+		$('#photos').append(photoHTML);
+	});
+			
+}); // end ready
+</script>
+</head>
+<body>
+<div class="wrapper">
+
+	<div class="content">
+		<div class="main">
+			<h1>Flickr Images</h1>
+		<div id="photos"></div>
+        <br class="clearLeft">
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

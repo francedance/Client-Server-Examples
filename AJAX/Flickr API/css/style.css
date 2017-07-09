@@ -1,0 +1,11 @@
+.image {
+	float: left;
+	padding: 10px;
+	border: solid 1px rgb(27,45,94);
+	background-color: white;
+	margin: 0 30px 30px 0;
+}
+.image:hover {
+	border-color: red;
+	background-color: rgb(204,204,204);	
+}
