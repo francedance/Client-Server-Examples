@@ -61,3 +61,15 @@
 **Well, the second version worked for me, if you got through it without the second method, Good for you! Let me know the secret!**
 
 **You're testing in your local machine but at this point you're on a server! Your server doesn't know different paths to your local files saved in your hard drive.**
+
+## What is AJAX? 
+
+**It isn't a programming language, it's more of methodologies of making something happen!**
+
+**AJAX = (Asynchronous Javascript XML). In simplest explanation, it's a method of letting Javascript communicate with backends (data servers).**
+
+**Let's say your frontend(UI/UX) is built in Javascript/HTML/CSS and PHP as Server Side Scripting language and MySQL as database**
+
+**General concept is that, your frontend part sends a data to a backend, then backend response to the frontend. Javascript/HTML/CSS can't never talk to server directly! but PHP can communicate with data server. AJAX simply work as a bridge between Javascript and PHP so that it can access datas inside places like MySQL. **
+
+  
