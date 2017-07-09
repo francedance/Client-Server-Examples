@@ -70,6 +70,6 @@
 
 **Let's say your frontend(UI/UX) is built in Javascript/HTML/CSS and PHP as Server Side Scripting language and MySQL as database**
 
-**General concept is that, your frontend part sends a data to a backend, then backend response to the frontend. Javascript/HTML/CSS can't never talk to server directly! but PHP can communicate with data server. AJAX simply work as a bridge between Javascript and PHP so that it can access datas inside places like MySQL. **
+**General concept is that, your frontend part sends a data to a backend, then backend response to the frontend. Javascript/HTML/CSS can't never talk to server directly! but PHP can communicate with data server. AJAX simply work as a bridge between Javascript and PHP so that it can access datas inside places like MySQL.**
 
   
