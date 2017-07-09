@@ -1,0 +1,53 @@
+
+#newslinks li {
+	display: inline-block;
+	margin-right: 20px;
+}
+#newslinks li a {
+	padding: 5px 10px; 
+	background-color: blue;
+	color: white !important;
+	text-decoration: none;	
+}
+#newslinks li a:hover {
+	background-color: rgb(110,138,195);
+	color: white !important;	
+}
+#headlines #newsItem {
+	margin-top: 10px;
+	padding: 20px;
+	border: 1px solid white;	
+}
+
+
+h3 {
+	color: white;
+	font-style: italic;
+	
+}
+
+p {
+	font-weight: bold;
+	color: silver;
+	
+}
+
+h1 {
+		
+	color: silver;
+	
+}
+
+h2 {
+	color: green;
+}
+
+.wrapper {
+	
+	background-color: black;
+	opacity: 0.8;
+
+}
+
+
+

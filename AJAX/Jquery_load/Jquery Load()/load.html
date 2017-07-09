@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>News Headlines</title>
+
+<link href="http://localhost/jquery_load./Jquery%20Load()/css/style.css" rel="stylesheet">
+
+<script src="http://localhost/jquery_load./Jquery%20Load()/js/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	
+	$('#newslinks a').click(function(){
+		
+		var url = $(this).attr('href');
+		$('#headlines').load(url + ' #newsItem');
+		return false;
+		
+
+	});
+	
+			
+}); // end ready
+</script>
+</head>
+<body>
+<div class="wrapper">
+
+
+	<div class="content">
+		<div class="main">
+			<h1>News Headlines</h1>
+			
+			<ul id="newslinks">
+			<li><a href="today.html">Today&#8217;s News</a></li>
+			<li><a href="yesterday.html">Yesterday&#8217;s News</a></li>
+			<li><a href="lastweek.html">Last Week&#8217;s News</a></li>
+			</ul>
+			
+			<div id="headlines"></div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
