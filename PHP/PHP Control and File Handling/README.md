@@ -62,7 +62,7 @@ $data = fread ($fp, 3);
 
 ```Php
 
-fclose($fp)
+fclose($fp);      
 
 ```
 **And you're done! You'll see that a new file named "newfile.txt" is created in your server if you don't have this file beforehand.**
