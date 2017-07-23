@@ -106,7 +106,7 @@
 **It should be working but have some sample 'index.html' or 'index.php' placed inside your "/www/my_website/" to visually see** 
 **If you have nothing there, you should see just a directory like this**
 
-![554](https://user-images.githubusercontent.com/10924864/28472660-70b60f40-6e0f-11e7-83a9-b38c6d4feb1e.PNG)
+![inked28472660-70b60f40-6e0f-11e7-83a9-b38c6d4feb1e_li](https://user-images.githubusercontent.com/10924864/28500571-9b4619a0-6f98-11e7-9357-ce0dcb5a7265.jpg)
 
 **Try to click 'Parent Directory' and see what happens! You have forbidden access! because you set this up in 'httpd.conf' :)** 
 
