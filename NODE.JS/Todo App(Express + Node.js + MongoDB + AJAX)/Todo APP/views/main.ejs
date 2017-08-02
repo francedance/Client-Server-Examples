@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <title>Test</title>
+    <script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+
+
+<style>
+    h1{
+        color: blue;
+        font-weight: bold;
+        font-size: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        background-color: gold;
+    
+    }
+
+    #todoform span {
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #todoform input, #todoform textarea, .edit_button , span input{
+        background-color: black;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+
+    p b {
+        color: red;
+        font-size: 20px;
+        text-decoration: underline;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #todo , #todo_detail {
+        color: black;
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+ </style>
+
+</head>
+
+<body>
+    <form action="/" method="POST" id="todoform">
+
+        <span>Todo: </span>
+         <textarea name="todo" rows="4" cols="50" form="todoform"> </textarea>
+
+         <br/>
+
+         <span>Todo Detail: </span>
+     <textarea name="todo_detail" rows="4" cols="50" form="todoform"> </textarea>
+        
+        <br/>
+        <br/>
+        <input type="submit" name="submit" />
+
+    </form>
+
+     
+
+    <div>
+        <h1>Jae's Todo List</h1>
+        <% for(var i = 0 ; i < todos.length ; i++) {  %>
+            <div style="border: 2px solid blue; margin-bottom: 20px; padding: 4px;">
+                <p><b>Todo:</b></p>
+            <p id="todo" > <%= todos[i].todo %> </p>
+
+           
+                <p><b>Todo Detail:</b></p>
+            <p id="todo_detail"> <%= todos[i].todo_detail %> </p>
+
+            <span>
+
+            <button class="edit_button" id="<%= todos[i].id %>">
+                <span>edit</span>
+            </button>
+
+            </span>
+
+            <form action="/delete/<%= todos[i].id %>" method="GET" id="delete">
+                <span><input type="submit" value="delete" name="<%=todos[i].todo %>" > </input></span>
+            </form>
+             </div>
+             
+            <% } %>   
+            
+           
+
+           
+
+    </div>
+
+
+        
+    <script>
+
+        $('.edit_button').click(function(){
+                var id = $(this).attr('id');
+                console.log(id);
+
+                var new_todo = prompt("Enter an updated todo",'');
+                var new_todo_detail = prompt("Enter an updated todo details", '');
+
+                $.post('http://localhost:3000/edit/' + id ,
+                        {
+                            new_todo: new_todo,
+                            new_todo_detail: new_todo_detail
+                        });
+
+                        location.reload();
+
+        })
+
+  
+        
+        
+    </script>
+
+
+
+</body>
+    
+
+
+
+
+</html>
