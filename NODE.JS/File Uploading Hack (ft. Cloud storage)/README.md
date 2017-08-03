@@ -1,27 +1,122 @@
-**This is a simple TODO application in my version Lol. I've used Express + Node.JS + MongoDB + AJAX + Jquery to come up with this Todo app**
-**I know  there are many parts that I am naive about and I am willing to take any advices!** 
+## I found some useful (for my standard) ways of managing file uploads while I was building my blog from a scratch and I would like to share this here!
 
-**Demonstration**
+### Please, all the security aspects are ignored here and I suggest using this for websites that does not require too much of security! 
 
-![ezgif com-crop](https://user-images.githubusercontent.com/10924864/28856544-c700f5c6-7711-11e7-8de1-6124e760d008.gif)
+**I came up with these methods as to "NOT" want to pay much money for hosting and cloud services HAHAHA**
+**I kind of like the idea of using cloud storage to save my images than save it to server storage because I think it's more convenient. Well you can just point the img src to the cloud links. I like to save server storages as much as possible. PS: You're using FREE version!**
+**Also, try to minimize image files as much as possible to save up storages. Use services like [JPEGmini](http://www.jpegmini.com/).**
+
+## Overall Logic Of This Hack
+
+  ### 1) A user uploads a file from client side views.
+  ### 2) Node JS accepts a file and its property such as filepath, filename then save it to your server's storgage.
+  ### 3) Once saved, you simply upload user's submitted file to Cloudinary storage using your Cloudinary information.
+  ### 4) Once a file is submitted to Cloudinary, you immediately delete file from a server storage to save up storage.
+  
+**---------------------------------------------------------------------------------------------------------------------------**
+
+## What you NEED!
+
+  ### 1) A simple app using Node JS framework, OR you can simply just download my files here!
+  ### 2) NPM! You'll be installing some dependencies for your app.
+  ### 3) A sample image file or whichever file that you want to test (I suggest using image files here!)
+  ### 4) A FREE account for Cloudinary! Please register a FREE account [here](https://cloudinary.com) 
+  
+**---------------------------------------------------------------------------------------------------------------------------**  
+
+## Getting start!
+
+   ### 1) Install all the dependencies!
+   
+   ```
+   npm install --save cloudinary
+   npm install --save formidable 
+   npm install --save node-delete
+   npm install --save express
+   npm install --save fs
+   ```
+   
+   ### 2) Include them in your Node JS app!
+   
+   ```Javascript
+   var cloudinary = require('cloudinary');
+   var formidable = required('formidable');
+   var del = require('node-delete');
+   var fs = require('fs');
+   var express = require('express');
+   ```
+   
+   ### 3) Generate a form to submit for user. I've just let server generated form.
+   
+   ```Javascript
+   
+   app.get('/',function(req,res){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="http://localhost:3000/fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+});
+   
+   ```
+   
+   ### 4) Set a url path where a file is uploaded. I've used ('/fileupload') as my path with "POST" method! Handle file upload with formidable. Save it to the path you desire. Send it to Cloudinary using your credentials! Delete the file from server storage. 
+   
+   
+  ```Javascript
+  app.post('/fileupload',function(req,res){
+    
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+
+        var oldpath = files.filetoupload.path;
+        var newpath = "./" + files.filetoupload.name;
+
+        fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
 
 
-## Overall logic (Please refer to my codes inside the folder for detailed logic)
+        res.write('File uploaded and moved!');
+        res.end();
+      });
 
-### + Submitting a new todo/todo detail is done through Form (using "POST" method). I've set up Node.JS to accept requests from form.
+      
+             cloudinary.config({ 
+            cloud_name: 'example', 
+            api_key: 'example', 
+            api_secret: 'example' 
+            });
 
-### + Once a form is submitted, Node.JS sets up a new todo model based on user inputs from client side then save it into MongoDB.
 
-### + List of todos are generated in the client side through EJS (Embedded Javascript) template engine. Node.JS spits out data from MongoDB then passes them to Client using EJS.
+             
+            cloudinary.uploader.upload(files.filetoupload.name, function(result) { 
+                console.log(result) 
+            });
 
-### + Updating a todo list uses AJAX call. Simply passing new todo/todo detail info from client to server side using "POST" method when requesting to server.
 
-### + Server parses updated info in the request then update exisiting todo then save.
+            del(['./' + files.filetoupload.name]);
+          
 
-### + In general, overall app is functioning based on corresponding 'id' from MongoDB. 
+        
+    });
+  
+  
+  ```
+  ### Done! Please refer to documentation of each dependencies for better experience and tweak! 
+  
+  **[Cloudinary Documentation on Node Integration](http://cloudinary.com/documentation/node_integration)**
+  
+  **[Node-delete Documentation](https://www.npmjs.com/package/node-delete)**
+  
+  **The Formidable I've used in this example seems outdated, try to look into newer version below**
+  
+  **[Formidable-Upload Documentation](https://www.npmjs.com/package/formidable-upload)**
+   
+   
+   
+   
 
-### + I've used EJS as my template engine. If you're using JADE, Mustache and etc, you need to find your way of passing data from Server to Client.
 
-### + Make sure your MongoDB is running in the background! Successful todo list should be able to "Fetch exisiting todo lists, Update todo list, Permanently delete from MongoDB, maintains same info/view when a browser is closed/refreshed/restarted."
+  
 
 
