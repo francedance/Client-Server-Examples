@@ -60,8 +60,8 @@ app.get('/error', function(req,res){
 
 app.get('/error/signin', function(req,res){
 
-       req.session.username = "francedance";
-    req.session.password = "chicken9807"
+       req.session.username = "test123";
+    req.session.password = "test123"
     
 
     res.redirect('/');
