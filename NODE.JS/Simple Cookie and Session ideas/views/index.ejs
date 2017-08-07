@@ -1,0 +1,18 @@
+
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        
+
+        <a href="/signin"> signin </a>
+        <br/>
+        <a href="/signout"> signout </a>
+        <br/>
+        <a href="/restricted"> restricted </a>
+
+
+        <% if (session)  { %> <%= session.username %> <%  } %>
+    </body>
+</html>
