@@ -12,4 +12,8 @@
     3) Now when a user tries to access "restricted" page, the server checks session info to see if a user is logged in or not. If logged in, then show "restricted" page, else repeat step "1".
     4) "Singout" page simply destroys current session and a user must log in again to access "restricted" page.
 
+## Demo
+
+![ezgif com-crop 1](https://user-images.githubusercontent.com/10924864/29036496-a6ea0f24-7b6d-11e7-9826-e046c9607d0e.gif)
+
 
